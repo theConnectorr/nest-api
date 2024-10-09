@@ -53,7 +53,7 @@ export class LearnersController {
   @Get("hehe")
   hehe(@Request() req) {
     return {
-      "message": "Youresuchabitch",
+      "message": "Youresuchanasshole",
       ...req.user
     }
   }
