@@ -6,9 +6,9 @@ import { JwtModule, JwtService } from "@nestjs/jwt";
 import { AuthModule } from "src/auth/auth.module";
 
 @Module({
-  imports: [ forwardRef(() => AuthModule)],
+  imports: [forwardRef(() => AuthModule)],
   controllers: [LearnersController],
   providers: [LearnersService],
-  exports: [LearnersService]
+  exports: [LearnersService],
 })
 export class LearnersModule {}

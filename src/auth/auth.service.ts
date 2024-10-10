@@ -6,8 +6,8 @@ import { LearnersService } from "src/learners/learners.service";
 @Injectable()
 export class AuthService {
   constructor(
-    private learnersService : LearnersService,
-    private jwtService : JwtService
+    private learnersService: LearnersService,
+    private jwtService: JwtService,
   ) {}
 
   async validateLearner(username: string, hashedPass: string) {
@@ -21,10 +21,14 @@ export class AuthService {
   }
 
   async login(learner) {
-    const payload = { name: learner.username, sub: learner.id };
-    
+    const payload = {
+      name: learner.username,
+      sub: learner.id,
+      roles: learner.roles,
+    };
+
     return {
-      access_token: this.jwtService.sign(payload)
+      access_token: this.jwtService.sign(payload),
     };
   }
 }

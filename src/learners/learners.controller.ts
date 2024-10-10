@@ -1,19 +1,16 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Request,
-  UseGuards,
-} from "@nestjs/common";
+import { Controller, Get, Post, Request, UseGuards } from "@nestjs/common";
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { LocalAuthGuard } from "src/auth/local-auth.guard";
 import { AuthService } from "src/auth/auth.service";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
+import { RolesGuard } from "src/auth/roles.guard";
+import { Roles } from "src/auth/roles.decorator";
+import { Role } from "src/auth/role.enum";
 
 // @ApiTags("learners")
 @Controller("learners")
 export class LearnersController {
-  constructor(private authService : AuthService) {}
+  constructor(private authService: AuthService) {}
 
   // @Post()
   // @ApiResponse({
@@ -49,12 +46,13 @@ export class LearnersController {
     return this.authService.login(req.user);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.Admin)
   @Get("hehe")
   hehe(@Request() req) {
     return {
-      "message": "Youresuchanasshole",
-      ...req.user
-    }
+      message: "Youresuchanasshole",
+      ...req.user,
+    };
   }
 }
