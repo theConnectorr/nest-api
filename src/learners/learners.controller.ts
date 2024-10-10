@@ -1,11 +1,11 @@
 import { Controller, Get, Post, Request, UseGuards } from "@nestjs/common";
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { LocalAuthGuard } from "src/auth/local-auth.guard";
+import { LocalAuthGuard } from "src/auth/local/local-auth.guard";
 import { AuthService } from "src/auth/auth.service";
-import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
-import { RolesGuard } from "src/auth/roles.guard";
-import { Roles } from "src/auth/roles.decorator";
-import { Role } from "src/auth/role.enum";
+import { JwtAuthGuard } from "src/auth/jwt/jwt-auth.guard";
+import { RolesGuard } from "src/auth/role/roles.guard";
+import { Roles } from "src/auth/role/roles.decorator";
+import { Role } from "src/auth/role/role.enum";
 
 // @ApiTags("learners")
 @Controller("learners")
